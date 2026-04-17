@@ -1,0 +1,50 @@
+.panel {
+  background: var(--bg-surface);
+  border: 2px solid var(--border);
+  padding: var(--space-lg);
+  position: relative;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid transparent;
+  pointer-events: none;
+}
+
+.panel:hover::before {
+  border-color: var(--border-bright);
+}
+
+.value {
+  font-family: var(--font-pixel);
+  font-size: 32px;
+  color: var(--accent-green);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.label {
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.trend {
+  font-size: 12px;
+  margin-top: var(--space-xs);
+}
+
+.trend.up {
+  color: var(--accent-green);
+}
+
+.trend.down {
+  color: var(--accent-red);
+}

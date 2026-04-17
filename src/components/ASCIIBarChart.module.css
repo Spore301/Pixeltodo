@@ -1,0 +1,90 @@
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.day {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--text-secondary);
+  width: 40px;
+  text-align: right;
+}
+
+.barContainer {
+  flex: 1;
+  height: 24px;
+  background: var(--bg-surface);
+  border: 2px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  background: var(--accent-green);
+  transition: width 0.3s ease-out;
+  position: relative;
+}
+
+.bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 8px,
+    rgba(0, 0, 0, 0.2) 8px,
+    rgba(0, 0, 0, 0.2) 16px
+  );
+}
+
+.value {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--accent-green);
+  width: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.title {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--accent-cyan);
+}
+
+.legend {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.legendColor {
+  width: 12px;
+  height: 12px;
+  border: 1px solid currentColor;
+}

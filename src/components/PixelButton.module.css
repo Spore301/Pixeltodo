@@ -1,0 +1,62 @@
+.button {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  border: 2px solid var(--accent-green);
+  color: var(--accent-green);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: none;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--accent-green);
+  color: var(--bg-deep);
+  box-shadow: 0 0 10px var(--accent-green), inset 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.button:active:not(:disabled) {
+  background: var(--accent-green);
+  color: var(--bg-deep);
+  transform: translate(1px, 1px);
+}
+
+.button:disabled {
+  border-color: var(--text-muted);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.danger {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+.danger:hover:not(:disabled) {
+  background: var(--accent-red);
+  color: var(--bg-deep);
+  box-shadow: 0 0 10px var(--accent-red);
+}
+
+.ghost {
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+
+.ghost:hover:not(:disabled) {
+  border-color: var(--border-bright);
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  box-shadow: none;
+}
+
+.sm {
+  font-size: 8px;
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.lg {
+  font-size: 12px;
+  padding: var(--space-md) var(--space-lg);
+}

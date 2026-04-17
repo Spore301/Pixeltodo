@@ -1,66 +1,50 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
-export default function Home() {
+import { StoreProvider, useStore } from '@/lib/store';
+import { TabNav } from '@/components/TabNav';
+import { NotesGrid } from '@/components/NotesGrid';
+import { ProjectView } from '@/components/ProjectView';
+import { PlannerView } from '@/components/PlannerView';
+import { BackgroundProcessor } from '@/components/BackgroundProcessor';
+import styles from './page.module.css';
+
+function AppContent() {
+  const { state, dispatch } = useStore();
+
   return (
-    <div className={styles.page}>
+    <div className={styles.container}>
+      <BackgroundProcessor />
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+        <header className={styles.header}>
+          <div className={styles.headerLeft}>
+            <span className={styles.menuIcon}>[≡]</span>
+            <h1 className={styles.title}>PIXELNOTES</h1>
+          </div>
+          <div className={styles.headerRight}>
+            <span className={styles.aiStatus}>[AI: Ready]</span>
+            <span className={styles.settingsIcon}>[⚙]</span>
+          </div>
+        </header>
+
+        <TabNav
+          activeTab={state.activeTab}
+          onTabChange={(tab) => dispatch({ type: 'SET_TAB', payload: tab })}
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className={styles.contentArea}>
+          {state.activeTab === 'notes' && <NotesGrid />}
+          {state.activeTab === 'projects' && <ProjectView />}
+          {state.activeTab === 'planner' && <PlannerView />}
         </div>
       </main>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <StoreProvider>
+      <AppContent />
+    </StoreProvider>
   );
 }

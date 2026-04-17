@@ -1,0 +1,8 @@
+.indicator {
+  color: var(--text-secondary);
+  font-size: 10px;
+}
+
+.saved {
+  color: var(--accent-green);
+}
